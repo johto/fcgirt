@@ -246,7 +246,6 @@ func (c *FastCGIConn) Do(stdin io.Reader, params io.Reader) (*FastCGIResponse, e
 			case RecStdout:
 				stdout.Write(rec.Payload)
 			case RecStderr:
-				fmt.Printf("\nSTDERR: %s\n", rec.Payload)
 				stderr.Write(rec.Payload)
 			case RecEndRequest:
 				return response, <-sinwerr
