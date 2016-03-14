@@ -224,8 +224,8 @@ func (c *FastCGIConn) Do(stdin io.Reader, params io.Reader) (*FastCGIResponse, e
 	}
 
 	// According to the FastCGI spec the app is free to start writing to
-	// stdout/stderr without reading all (or indeed any) of its stdin, so write
-	// we write it in a separate goroutine.
+	// stdout/stderr without reading all (or indeed any) of its stdin, so we
+	// write it in a separate goroutine.
 	sinwerr := make(chan error, 1)
 	go func() {
 		err = c.WriteStream(RecStdin, stdin, 2048)
