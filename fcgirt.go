@@ -15,6 +15,12 @@ type Dialer interface {
 	Dial() (net.Conn, error)
 }
 
+type DialerFunc func () (net.Conn, error)
+
+func (f DialerFunc) Dial() (net.Conn, error) {
+    return f()
+}
+
 type RoundTripper struct {
 	http.RoundTripper
 	dialer Dialer
